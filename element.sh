@@ -35,3 +35,13 @@ PRINT_ELEMENT() {
   fi
 }
 
+START_PROGRAM() {
+  CHECK=$($PSQL "SELECT COUNT(*) FROM elements WHERE atomic_number=1000;")
+  if [[ $CHECK -gt 0 ]]
+  then
+    FIX_DB
+    clear
+  fi
+  MAIN_PROGRAM $1
+}
+
